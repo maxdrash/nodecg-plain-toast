@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<style>
+		body {
+			--primary-text-color: #ffffff;
+			--secondary-text-color: #a1a1a1;
+			--primary-color: #30bebe;
+		}
+		nodecg-toggle {
+			margin: 2rem 0 1rem 0;
+		}
+	</style>
+		<link rel="import" href="../bower_components/nodecg-replicant-input/nodecg-replicant-input.html">
+		<link rel="import" href="../bower_components/nodecg-toggle/nodecg-toggle.html">
+</head>
+<body>
+
+	<nodecg-replicant-input label="A text to toast" replicant-name="toast"></nodecg-replicant-input>
+	<nodecg-replicant-input label="Duration" type="number" replicant-name="duration"></nodecg-replicant-input>
+
+	<nodecg-toggle replicant-name="visible" id="showButton"></nodecg-toggle>
+	<script>
+	(function(){
+
+		const visibleRep = nodecg.Replicant('visible')
+		const durationRep = nodecg.Replicant('duration')
+		const showButton = document.querySelector('#showButton')
+
+		NodeCG.waitForReplicants(visibleRep, durationRep)
+		.then(() => {
+		
+			// Updating help text on every duration change
+			durationRep.on('change', (newValue) => {
+				showButton.textContent = durationRep.value > 0 ? `Show for ${newValue} seconds` : `Show infinitely`
+			})
+		
+			// Whenever we pull the switch, "visible" replicant changes its' value
+			// thus, listening on value change is more sufficient than listening for DOM events.
+			// It's still flawed: since we set timeout on client side it will be forgotten upon accidental page reload.
+			// In this case, a manual disabling is required.
+			visibleRep.on('change', (newValue) => {
+				if ((newValue === true) && (Number(durationRep.value) > 0)) {
+					setTimeout(() => {
+						visibleRep.value = false
+					}, Number(durationRep.value)*1000)
+				}
+			})
+		
+		})
+
+	})()
+
+	</script>
+</body>
+</html>

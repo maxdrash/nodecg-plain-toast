@@ -1,0 +1,6 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "boolean",
+	"default": false,
+	"description": "Current state of popup window. Corresponds to visible/hidden for true/false."
+}

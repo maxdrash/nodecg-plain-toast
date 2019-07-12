@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<style>
+
+		/* 
+				You can either set body to take up full screen size and make overlay 
+				cover your entire video stream (currently set up like this),
+				or change graphics width and height in package.json and load up a small 
+				chunk of browser souce and move it wherever you need in your streaming software
+		*/
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+		}
+		#toast {
+			background-color: #21579bc7;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 3rem;
+			color: white;
+			padding: 2rem;
+			overflow: hidden;
+			position: absolute;
+			bottom: 2rem;
+			left: 3rem;
+
+			/* For the sake of basic animation */
+
+			transition: 0.3s all ease-in-out;
+			height: 3rem;
+			opacity: 1;
+		}
+		#toast.hidden {
+			opacity: 0;
+			height: 0;
+			transition: 0.3s all ease-in-out;
+		}
+	</style>
+</head>
+<body>
+
+	<p id="toast" class="hidden">Text</p>
+
+	<script>
+		(function(){
+
+		const toast = document.querySelector('#toast')
+		const stateRep = window.nodecg.Replicant('visible')
+		const textRep = window.nodecg.Replicant('toast')
+
+		NodeCG.waitForReplicants(stateRep, textRep)
+		.then(() => {
+
+			textRep.on('change', (newValue) => {
+				toast.innerText = newValue
+			})
+		
+			stateRep.on('change', (newValue) => {
+				if (newValue === true) {
+					toast.classList.remove('hidden')
+				} else {
+					toast.classList.add('hidden')
+				}
+			})
+		})
+
+		})()
+	</script>
+</body>
+</html>

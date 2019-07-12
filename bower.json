@@ -1,0 +1,21 @@
+{
+  "name": "plain-toast",
+  "description": "A dead simple text popup bundle",
+  "main": "",
+  "authors": [
+    "mkrl"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodecg",
+    "toast",
+    "popup",
+    "text",
+    "nodecg-bundle"
+  ],
+  "private": true,
+  "dependencies": {
+    "nodecg-replicant-input": "NodeCGElements/nodecg-replicant-input#^1.0.1",
+    "nodecg-toggle": "NodeCGElements/nodecg-toggle#^1.0.0"
+  }
+}

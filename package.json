@@ -1,0 +1,45 @@
+{
+  "name": "plain-toast",
+  "version": "0.0.0",
+  "description": "A dead simple text popup bundle",
+  "author": {
+    "name": "mkrl",
+    "email": "self@mkrl.xyz",
+    "url": "https://mkrl.xyz"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "nodecg",
+    "toast",
+    "popup",
+    "text",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "toast",
+        "title": "Make a toast",
+        "width": 2,
+        "file": "toast.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "toast.html",
+        "width": 1920,
+        "height": 1080,
+        "singleInstance": true
+      }
+    ]
+  },
+  "repository": "git@github.com:mkrl/nodecg.git",
+  "license": "MIT"
+}

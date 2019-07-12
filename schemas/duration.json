@@ -1,0 +1,7 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "string",
+	"pattern": "^(\\s*|\\d+)$",
+	"default": "10",
+	"description": "Amount of popup display time in seconds"
+}
